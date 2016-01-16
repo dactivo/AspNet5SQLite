@@ -59,11 +59,22 @@
 	    };
 
 	    var GetDataEventRecords = function () {
+            var deferred = $q.defer();
+
 	        $log.info("DataEventRecordService DataEventRecords called");
-	        return $http.get("/api/DataEventRecords")
+	        $http({
+				url:"/api/DataEventRecords",
+				cache:false,
+				method:"GET"
+			}
+				)
 			.then(function (response) {
-			    return response.data;
+				deferred.resolve(response.data);
+			    
 			});
+			
+			console.log("devuelve en función get");
+			        return deferred.promise;
 	    }
 
 	    var GetDataEventRecord = function (id) {

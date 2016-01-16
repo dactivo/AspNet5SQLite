@@ -18,6 +18,7 @@ namespace AspNet5SQLite.Controllers
         }
 
         [HttpGet]
+        [ResponseCache(NoStore = true, Duration = 0)]
         public IEnumerable<DataEventRecord> Get()
         {
             return _dataEventRecordRepository.GetAll();

@@ -27,14 +27,19 @@
 		    $log.info("Updating");
 		    $log.info(dataEventRecord);
 		    $scope.DataEventRecordsService.UpdateDataEventRecord(dataEventRecord);
+			$scope.$parent.mensajeoperacion="record actualizado";
 		    $scope.state.go("overview");
 		};
 
 		$scope.Create = function () {
 		    $log.info("Creating");
 		    $log.info(dataEventRecord);
-		    $scope.DataEventRecordsService.AddDataEventRecord(dataEventRecord);
-		    $scope.state.go("overview");
+		    $scope.DataEventRecordsService.AddDataEventRecord(dataEventRecord).then
+			{
+					$scope.$emit('reloadingrecords', "record added");
+				$scope.state.go("overview");
+			}
+		    
 		};
 
 	}

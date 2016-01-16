@@ -26,7 +26,7 @@ namespace AspNet5SQLite
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(appEnv.ApplicationBasePath)
-                .AddJsonFile("config.json");
+                .AddJsonFile("appsettings.json");
             Configuration = builder.Build();
         }
 

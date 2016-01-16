@@ -2,6 +2,7 @@
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks("grunt-bower-task");
@@ -10,7 +11,7 @@
         bower: {
             install: {
                 options: {
-                    targetDir: "wwwroot/lib",
+                    targetDir: ".bower_components",
                     layout: "byComponent",
                     cleanTargetDir: false
                 }
@@ -19,7 +20,7 @@
         sass: {
             dist: {
                 files: {
-                    'wwwroot/default_theme.css': 'app/content/default_theme.scss'
+                    'tmp/default_theme.css': 'app/content/default_theme.scss'
                 }
             }
         },
@@ -30,15 +31,25 @@
             },
             dist: {
                 files: {
-                    'wwwroot/default_theme.min.css': ["wwwroot/default_theme.css"]
+                    'wwwroot/assets/css/default_theme.min.css': [".bower_components/bootstrap/css/bootstrap.min.css","tmp/default_theme.css"]
                 }
             }
         },
         uglify: {
             my_target: {
-                files: { 'wwwroot/app.js': ['app/app.js', 'app/**/*.js'] }
+                files: { 'wwwroot/assets/js/app.js': ['app/app.js', 'app/**/*.js'] }
+            },
+            platform:{
+                files:{'wwwroot/assets/js/platform.js':['.bower_components/jquery/js/jquery.min.js','.bower_components/bootstrap/js/bootstrap.min.js','.bower_components/angular/angular.min.js','.bower_components/angular-ui-router/angular-ui-router.min.js']}
             }
         },
+        copy: {
+  main: {
+    files: [
+      // includes files within path
+      {expand: true, flatten: true, src: ['.bower_components/bootstrap/fonts/*'], dest: 'wwwroot/assets/fonts', filter: 'isFile'},
+
+    ]}},
         watch: {
             scripts: {
                 files: ['app/**/*.js'],
@@ -52,6 +63,6 @@
     });
 
     grunt.registerTask("bowertask", ["bower:install"]);
-    grunt.registerTask('default', ['sass', 'cssmin', 'uglify', 'watch']);
+    grunt.registerTask('default', ['sass', 'cssmin', 'uglify:my_target','uglify:platform','copy:main', 'watch']);
 
 };

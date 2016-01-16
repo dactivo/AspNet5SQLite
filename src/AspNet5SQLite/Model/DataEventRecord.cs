@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace AspNet5SQLite.Model
 {
@@ -9,6 +10,7 @@ namespace AspNet5SQLite.Model
 
     public class DataEventRecord
     {
+        [ScaffoldColumn(true)]
         public long Id { get; set; }
         public string Name { get; set; }
 
