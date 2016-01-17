@@ -12,7 +12,7 @@
         bower: {
             install: {
                 options: {
-                    targetDir: ".bower_components",
+                    targetDir: "bower_components",
                     layout: "byComponent",
                     cleanTargetDir: false
                 }
@@ -21,7 +21,7 @@
         sass: {
             dist: {
                 files: {
-                    'tmp/default_theme.css': 'app/content/default_theme.scss'
+                    '.tmp/default_theme.css': 'app/content/default_theme.scss'
                 }
             }
         },
@@ -32,7 +32,7 @@
             },
             dist: {
                 files: {
-                    'wwwroot/assets/css/default_theme.min.css': [".bower_components/bootstrap/css/bootstrap.min.css","tmp/default_theme.css"]
+                    'wwwroot/assets/css/default_theme.min.css': ["bower_components/bootstrap/css/bootstrap.min.css",".tmp/default_theme.css"]
                 }
             }
         },
@@ -41,14 +41,14 @@
                 files: { 'wwwroot/assets/js/app.js': ['app/app.js', 'app/**/**/*.js', 'app/**/*.js'] }
             },
             platform:{
-                files:{'wwwroot/assets/js/platform.js':['.bower_components/jquery/js/jquery.min.js','.bower_components/bootstrap/js/bootstrap.min.js','.bower_components/angular/angular.min.js','.bower_components/angular-ui-router/angular-ui-router.min.js']}
+                files:{'wwwroot/assets/js/platform.js':['bower_components/jquery/js/jquery.min.js','bower_components/bootstrap/js/bootstrap.min.js','bower_components/angular/angular.min.js','bower_components/angular-ui-router/angular-ui-router.min.js']}
             }
         },
         copy: {
   main: {
     files: [
       // includes files within path
-      {expand: true, flatten: true, src: ['.bower_components/bootstrap/fonts/*'], dest: 'wwwroot/assets/fonts', filter: 'isFile'},
+      {expand: true, flatten: true, src: ['bower_components/bootstrap/fonts/*'], dest: 'wwwroot/assets/fonts', filter: 'isFile'},
 
     ]}},
     
@@ -66,12 +66,12 @@
             ,
             platform: {
                 src:[
-                    '.bower_components/angular/angular.js','.bower_components/angular-ui-router/angular-ui-router.js'
+                    'bower_components/angular/angular.js','bower_components/angular-ui-router/angular-ui-router.js'
                 ],
                 dest:'wwwroot/assets/js/platform.js'
             },
             css:{
-                src:[".bower_components/bootstrap/css/bootstrap.min.css","tmp/default_theme.css"],
+                src:["bower_components/bootstrap/css/bootstrap.min.css",".tmp/default_theme.css"],
                 dest:'wwwroot/assets/css/default_theme.min.css'
             }
         },
