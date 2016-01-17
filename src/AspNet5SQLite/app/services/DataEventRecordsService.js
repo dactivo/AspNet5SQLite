@@ -1,4 +1,5 @@
-﻿(function () {
+﻿/* global angular */
+(function () {
     'use strict';
 
     function DataEventRecordsService($http, $log, $q) {
