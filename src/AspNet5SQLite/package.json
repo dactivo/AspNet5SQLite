@@ -15,6 +15,6 @@
   },
   "scripts": {
     "setup": "npm install && bower install && dnu restore && dnu build",
-    "start": "nodemon --ext 'cs,json' --exec 'dnx web'"
+    "start": "nodemon --ext 'cs,json' --exec dnx web"
   }
 }
