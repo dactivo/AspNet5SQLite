@@ -13,6 +13,8 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNet.StaticFiles;
+using Microsoft.Extensions;
 
 namespace AspNet5SQLite
 {
@@ -44,8 +46,16 @@ namespace AspNet5SQLite
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+           
+            DefaultFilesOptions options = new DefaultFilesOptions();
+            options.DefaultFileNames.Clear();
+            options.DefaultFileNames.Add("index.html");
+            app.UseDefaultFiles(options);
+  
+            //app.UseDirectoryBrowser();
+            
             loggerFactory.MinimumLevel = LogLevel.Information;
-            loggerFactory.AddConsole();
+            loggerFactory.AddConsole(); 
             loggerFactory.AddDebug();
 
             app.UseIISPlatformHandler();
